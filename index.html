@@ -1,1 +1,2296 @@
-test
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="싸이월드 BGM, 문방구 오락기, 플래시게임, MP3, 폴더폰 감성을 다시 꺼내보는 80·90년대생 온라인 추억 커뮤니티">
+  <title>온라인 탑골공원 - 80·90년대생 추억 놀이터</title>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=IBM+Plex+Sans+KR:wght@400;500;700;800&display=swap");
+
+    :root {
+      --paper: #f5dfad;
+      --paper-soft: #fff4ca;
+      --cream: #fff9df;
+      --lemon: #ffe88a;
+      --ink: #2a1b11;
+      --muted: #674a32;
+      --line: #3b2818;
+      --red: #d94c2f;
+      --red-dark: #a93625;
+      --orange: #f08b2f;
+      --green: #657b37;
+      --green-dark: #405628;
+      --navy: #17335f;
+      --teal: #1d6c75;
+      --blue: #315f96;
+      --shadow: 5px 6px 0 rgba(55, 35, 19, 0.28);
+      --soft-shadow: 3px 4px 0 rgba(55, 35, 19, 0.18);
+      --radius: 16px;
+      --tab-height: 66px;
+      --container: 1180px;
+    }
+
+    body.pcbang-mode {
+      --paper: #15191f;
+      --paper-soft: #252733;
+      --cream: #2f2b25;
+      --lemon: #f1c75d;
+      --ink: #fff1c4;
+      --muted: #d5bd83;
+      --line: #f0c35b;
+      --red: #ff6f45;
+      --red-dark: #ff9b6e;
+      --orange: #ffc857;
+      --green: #83b857;
+      --green-dark: #b5da83;
+      --navy: #57a8ff;
+      --teal: #4ed0c6;
+      --blue: #70a8ff;
+      --shadow: 5px 6px 0 rgba(0, 0, 0, 0.52);
+      --soft-shadow: 3px 4px 0 rgba(0, 0, 0, 0.42);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      padding-bottom: calc(var(--tab-height) + env(safe-area-inset-bottom));
+      color: var(--ink);
+      font-family: "IBM Plex Sans KR", "Gowun Dodum", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+      background:
+        radial-gradient(circle at 16% 6%, rgba(217, 76, 47, 0.18), transparent 260px),
+        radial-gradient(circle at 88% 18%, rgba(29, 108, 117, 0.16), transparent 260px),
+        repeating-linear-gradient(0deg, rgba(59, 40, 24, 0.035) 0 1px, transparent 1px 18px),
+        repeating-linear-gradient(90deg, rgba(59, 40, 24, 0.03) 0 1px, transparent 1px 18px),
+        linear-gradient(135deg, var(--paper), #efd191 58%, #dfb779);
+      background-attachment: fixed;
+    }
+
+    body::before {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      content: "";
+      opacity: 0.38;
+      background-image:
+        radial-gradient(rgba(59, 40, 24, 0.22) 0.65px, transparent 0.7px),
+        radial-gradient(rgba(255, 255, 255, 0.22) 0.65px, transparent 0.7px);
+      background-position: 0 0, 7px 8px;
+      background-size: 16px 16px;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    button,
+    input,
+    textarea,
+    select {
+      font: inherit;
+    }
+
+    button,
+    a.button-link {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button:focus-visible,
+    a:focus-visible,
+    input:focus-visible,
+    textarea:focus-visible,
+    select:focus-visible {
+      outline: 3px solid var(--blue);
+      outline-offset: 3px;
+    }
+
+    .skip-link {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      z-index: 100;
+      padding: 10px 14px;
+      border: 2px solid var(--line);
+      border-radius: 10px;
+      color: var(--ink);
+      background: var(--lemon);
+      transform: translateY(-140%);
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+    .app {
+      width: min(100%, var(--container));
+      margin: 0 auto;
+      padding: 12px 16px 26px;
+    }
+
+    .top-header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      min-height: 62px;
+      margin: -1px -8px 12px;
+      padding: 8px;
+      border: 3px solid var(--line);
+      border-radius: 0 0 var(--radius) var(--radius);
+      background: rgba(255, 249, 223, 0.92);
+      box-shadow: var(--soft-shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    body.pcbang-mode .top-header {
+      background: rgba(37, 39, 51, 0.94);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      min-width: 0;
+      gap: 8px;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .brand-mark {
+      display: grid;
+      flex: 0 0 auto;
+      width: 40px;
+      height: 40px;
+      place-items: center;
+      border: 2px solid var(--line);
+      border-radius: 12px;
+      color: var(--cream);
+      background: var(--navy);
+      box-shadow: 2px 2px 0 var(--orange);
+    }
+
+    .brand-text {
+      overflow: hidden;
+      font-size: 18px;
+      line-height: 1.1;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .desktop-nav {
+      display: none;
+    }
+
+    .header-actions {
+      display: flex;
+      flex: 0 0 auto;
+      gap: 8px;
+    }
+
+    .icon-button,
+    .primary-button,
+    .secondary-button,
+    .tiny-button,
+    .vote-button,
+    .filter-chip,
+    .playlist-button,
+    .tab-button,
+    .button-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      min-height: 44px;
+      border: 2px solid var(--line);
+      border-radius: 12px;
+      color: var(--ink);
+      font-weight: 800;
+      letter-spacing: 0;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+    }
+
+    .icon-button {
+      min-width: 46px;
+      padding: 0 10px;
+      background: var(--cream);
+      box-shadow: 2px 3px 0 rgba(55, 35, 19, 0.22);
+    }
+
+    .primary-button {
+      width: 100%;
+      padding: 10px 12px;
+      color: #fff9df;
+      background: var(--red);
+      box-shadow: 3px 4px 0 var(--line);
+    }
+
+    .secondary-button {
+      width: 100%;
+      padding: 10px 12px;
+      color: #fff9df;
+      background: var(--green);
+      box-shadow: 3px 4px 0 var(--line);
+    }
+
+    .tiny-button {
+      padding: 8px 12px;
+      background: var(--lemon);
+      box-shadow: 2px 3px 0 rgba(55, 35, 19, 0.18);
+    }
+
+    .button-link {
+      padding: 10px 12px;
+      color: #fff9df;
+      background: var(--navy);
+      box-shadow: 3px 4px 0 var(--line);
+    }
+
+    button:active,
+    a.button-link:active {
+      transform: translate(2px, 2px);
+      box-shadow: 1px 1px 0 rgba(55, 35, 19, 0.25);
+    }
+
+    .hero,
+    .section-panel,
+    .music-player,
+    .guestbook-form,
+    .roadmap-wrap {
+      border: 3px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      background: var(--cream);
+    }
+
+    .hero {
+      display: grid;
+      gap: 18px;
+      padding: 18px;
+      overflow: hidden;
+      background:
+        linear-gradient(135deg, rgba(255, 232, 138, 0.85), rgba(255, 249, 223, 0.96) 48%),
+        repeating-linear-gradient(45deg, rgba(217, 76, 47, 0.09) 0 8px, transparent 8px 16px);
+    }
+
+    .hero-copy-wrap {
+      display: grid;
+      gap: 13px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      width: fit-content;
+      align-items: center;
+      min-height: 32px;
+      padding: 4px 10px;
+      border: 2px solid var(--line);
+      border-radius: 999px;
+      color: #fff9df;
+      font-size: 13px;
+      font-weight: 800;
+      background: var(--teal);
+    }
+
+    .hero h1 {
+      margin: 0;
+      color: var(--ink);
+      font-size: 34px;
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+
+    .hero-subtitle {
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .hero-quote {
+      margin: 0;
+      padding-left: 10px;
+      border-left: 5px solid var(--red);
+      font-size: 18px;
+      font-weight: 800;
+      line-height: 1.35;
+    }
+
+    .badge-row,
+    .tag-list,
+    .board-meta,
+    .guest-meta,
+    .roadmap-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    .retro-badge,
+    .tag,
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 4px 9px;
+      border: 2px solid var(--line);
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 800;
+      background: var(--paper-soft);
+    }
+
+    .retro-badge:nth-child(2n) {
+      background: #d6e19b;
+    }
+
+    .retro-badge:nth-child(3n) {
+      color: #fff9df;
+      background: var(--navy);
+    }
+
+    .cta-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .crt-box {
+      position: relative;
+      overflow: hidden;
+      min-height: 172px;
+      padding: 16px;
+      border: 4px solid var(--line);
+      border-radius: 14px;
+      color: #d9ffb5;
+      background:
+        radial-gradient(circle at 50% 28%, rgba(109, 255, 124, 0.12), transparent 210px),
+        linear-gradient(145deg, #102232, #0a141e);
+      box-shadow: inset 0 0 0 4px rgba(255, 255, 255, 0.05), 4px 5px 0 rgba(23, 51, 95, 0.32);
+    }
+
+    .crt-box::after {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      content: "";
+      background: repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.06) 0 2px, rgba(0, 0, 0, 0.08) 2px 4px);
+      mix-blend-mode: screen;
+    }
+
+    .crt-label {
+      display: inline-flex;
+      margin-bottom: 12px;
+      padding: 3px 8px;
+      border: 1px solid rgba(217, 255, 181, 0.7);
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .crt-box p {
+      position: relative;
+      z-index: 1;
+      margin: 0 0 12px;
+      font-family: "Gowun Dodum", "IBM Plex Sans KR", sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+    }
+
+    .crt-meter {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      height: 18px;
+      overflow: hidden;
+      border: 2px solid rgba(217, 255, 181, 0.75);
+      border-radius: 999px;
+      background: rgba(217, 255, 181, 0.1);
+    }
+
+    .crt-meter span {
+      width: 78%;
+      background: repeating-linear-gradient(90deg, #d9ffb5 0 10px, #6bd36d 10px 18px);
+    }
+
+    .section {
+      margin-top: 30px;
+      scroll-margin-top: 86px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      margin: 0;
+      font-size: 24px;
+      line-height: 1.18;
+      letter-spacing: 0;
+    }
+
+    .section-kicker {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--red-dark);
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .section-note {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .popular-strip {
+      display: grid;
+      grid-auto-columns: minmax(225px, 78%);
+      grid-auto-flow: column;
+      gap: 12px;
+      overflow-x: auto;
+      padding: 4px 4px 12px;
+      scroll-snap-type: x mandatory;
+    }
+
+    .popular-strip::-webkit-scrollbar,
+    .playlist::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    .popular-strip::-webkit-scrollbar-thumb,
+    .playlist::-webkit-scrollbar-thumb {
+      border-radius: 999px;
+      background: rgba(59, 40, 24, 0.34);
+    }
+
+    .mini-card,
+    .nostalgia-card,
+    .board-post,
+    .arcade-card,
+    .object-card,
+    .guest-entry {
+      border: 3px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--cream);
+      box-shadow: var(--soft-shadow);
+    }
+
+    .mini-card {
+      display: grid;
+      min-height: 160px;
+      padding: 14px;
+      scroll-snap-align: start;
+    }
+
+    .mini-card strong,
+    .board-post h3,
+    .arcade-card h3,
+    .object-card h3,
+    .guest-entry strong {
+      font-size: 18px;
+      line-height: 1.25;
+    }
+
+    .mini-icon {
+      display: grid;
+      width: 42px;
+      height: 42px;
+      margin-bottom: 10px;
+      place-items: center;
+      border: 2px solid var(--line);
+      border-radius: 12px;
+      background: var(--lemon);
+      box-shadow: 2px 3px 0 rgba(55, 35, 19, 0.22);
+      font-size: 24px;
+    }
+
+    .mini-card p,
+    .nostalgia-card p,
+    .board-post p,
+    .arcade-card p,
+    .object-card p,
+    .guest-entry p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .music-player {
+      display: grid;
+      gap: 14px;
+      padding: 12px;
+    }
+
+    .player-frame {
+      overflow: hidden;
+      border: 3px solid var(--line);
+      border-radius: 14px;
+      background: #0e1520;
+      box-shadow: inset 0 0 0 4px rgba(255, 255, 255, 0.04);
+    }
+
+    .player-frame iframe {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border: 0;
+    }
+
+    .now-playing {
+      display: grid;
+      gap: 5px;
+      margin-top: 10px;
+      padding: 10px;
+      border: 2px dashed var(--line);
+      border-radius: 12px;
+      background: var(--paper-soft);
+    }
+
+    .now-playing strong {
+      font-size: 18px;
+    }
+
+    .now-playing span {
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .playlist {
+      display: grid;
+      gap: 9px;
+      max-height: 450px;
+      overflow: auto;
+      padding-right: 2px;
+    }
+
+    .playlist-button {
+      width: 100%;
+      justify-content: flex-start;
+      min-height: 62px;
+      padding: 10px;
+      text-align: left;
+      background: var(--paper-soft);
+    }
+
+    .playlist-button.is-active {
+      color: #fff9df;
+      background: var(--navy);
+      box-shadow: 3px 4px 0 var(--orange);
+    }
+
+    .playlist-button small {
+      display: block;
+      margin-top: 3px;
+      font-size: 13px;
+      font-weight: 600;
+      opacity: 0.88;
+    }
+
+    .filter-panel {
+      display: grid;
+      gap: 10px;
+      margin-bottom: 14px;
+      padding: 12px;
+      border: 3px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 249, 223, 0.72);
+      box-shadow: var(--soft-shadow);
+    }
+
+    body.pcbang-mode .filter-panel {
+      background: rgba(47, 43, 37, 0.9);
+    }
+
+    .search-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 8px;
+    }
+
+    .search-row input,
+    .guestbook-form input,
+    .guestbook-form select,
+    .guestbook-form textarea,
+    .comment-panel input,
+    .comment-panel textarea {
+      width: 100%;
+      min-height: 46px;
+      padding: 10px 12px;
+      border: 2px solid var(--line);
+      border-radius: 12px;
+      color: var(--ink);
+      background: var(--cream);
+    }
+
+    .filter-row {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 3px;
+    }
+
+    .filter-chip {
+      flex: 0 0 auto;
+      padding: 8px 12px;
+      background: var(--cream);
+    }
+
+    .filter-chip.is-active {
+      color: #fff9df;
+      background: var(--red);
+      box-shadow: 2px 3px 0 var(--line);
+    }
+
+    .nostalgia-card {
+      position: relative;
+      overflow: hidden;
+      padding: 12px;
+    }
+
+    .nostalgia-card.is-picked {
+      animation: pickedPulse 1.3s ease 2;
+    }
+
+    @keyframes pickedPulse {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      45% {
+        transform: translateY(-4px);
+        box-shadow: 7px 8px 0 rgba(217, 76, 47, 0.35);
+      }
+    }
+
+    .thumb {
+      position: relative;
+      display: grid;
+      overflow: hidden;
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      margin-bottom: 12px;
+      place-items: center;
+      border: 3px solid var(--line);
+      border-radius: 14px;
+      background:
+        radial-gradient(circle at 28% 26%, rgba(255, 249, 223, 0.7), transparent 86px),
+        repeating-linear-gradient(135deg, rgba(23, 51, 95, 0.15) 0 9px, rgba(240, 139, 47, 0.16) 9px 18px),
+        var(--lemon);
+    }
+
+    .thumb::after {
+      position: absolute;
+      inset: 0;
+      content: "";
+      background: repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.08) 0 2px, rgba(59, 40, 24, 0.06) 2px 4px);
+    }
+
+    .thumb-icon {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      width: 78px;
+      height: 78px;
+      place-items: center;
+      border: 3px solid var(--line);
+      border-radius: 20px;
+      background: var(--cream);
+      box-shadow: 4px 5px 0 rgba(55, 35, 19, 0.22);
+      font-size: 42px;
+    }
+
+    .nostalgia-card h3 {
+      margin: 0;
+      font-size: 19px;
+      line-height: 1.28;
+    }
+
+    .vote-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .vote-button {
+      min-height: 46px;
+      padding: 8px 6px;
+      font-size: 13px;
+      background: var(--paper-soft);
+    }
+
+    .vote-button.up {
+      color: #fff9df;
+      background: var(--red);
+    }
+
+    .vote-button.down {
+      color: #fff9df;
+      background: var(--navy);
+    }
+
+    .comment-panel {
+      display: none;
+      gap: 9px;
+      margin-top: 12px;
+      padding: 10px;
+      border: 2px dashed var(--line);
+      border-radius: 14px;
+      background: var(--paper-soft);
+    }
+
+    .comment-panel.is-open {
+      display: grid;
+    }
+
+    .comment-form-row {
+      display: grid;
+      gap: 8px;
+    }
+
+    .comment-list {
+      display: grid;
+      gap: 7px;
+      margin-top: 2px;
+    }
+
+    .comment-chip {
+      padding: 8px;
+      border: 2px solid rgba(59, 40, 24, 0.42);
+      border-radius: 12px;
+      background: rgba(255, 249, 223, 0.7);
+      font-size: 14px;
+    }
+
+    body.pcbang-mode .comment-chip {
+      background: rgba(21, 25, 31, 0.42);
+    }
+
+    .empty-state {
+      padding: 18px;
+      border: 3px dashed var(--line);
+      border-radius: var(--radius);
+      color: var(--muted);
+      background: var(--paper-soft);
+      text-align: center;
+      font-weight: 800;
+    }
+
+    .section-panel {
+      padding: 12px;
+    }
+
+    .board-list,
+    .arcade-grid,
+    .object-grid,
+    .guestbook-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .board-post,
+    .arcade-card,
+    .object-card,
+    .guest-entry {
+      padding: 13px;
+    }
+
+    .board-post h3,
+    .arcade-card h3,
+    .object-card h3 {
+      margin: 0;
+    }
+
+    .board-meta,
+    .guest-meta {
+      margin-top: 10px;
+    }
+
+    .pill {
+      background: var(--paper-soft);
+    }
+
+    .pill.hot {
+      color: #fff9df;
+      background: var(--red);
+    }
+
+    .pill.blue {
+      color: #fff9df;
+      background: var(--navy);
+    }
+
+    .arcade-card {
+      display: grid;
+      gap: 10px;
+    }
+
+    .arcade-icon {
+      display: grid;
+      width: 48px;
+      height: 48px;
+      place-items: center;
+      border: 2px solid var(--line);
+      border-radius: 12px;
+      background: var(--lemon);
+      font-size: 27px;
+    }
+
+    .quiz-box {
+      display: grid;
+      gap: 10px;
+      margin-top: 12px;
+      padding: 12px;
+      border: 3px solid var(--line);
+      border-radius: var(--radius);
+      color: #fff9df;
+      background: var(--teal);
+      box-shadow: var(--soft-shadow);
+    }
+
+    .quiz-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .object-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .guestbook-form {
+      display: grid;
+      gap: 10px;
+      margin-bottom: 14px;
+      padding: 12px;
+    }
+
+    .guestbook-form textarea {
+      min-height: 96px;
+      resize: vertical;
+    }
+
+    .guest-entry {
+      background:
+        linear-gradient(90deg, rgba(240, 139, 47, 0.14), transparent 34%),
+        var(--cream);
+    }
+
+    .guest-entry p {
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .roadmap-wrap {
+      overflow-x: auto;
+      padding: 0;
+    }
+
+    .roadmap-table {
+      width: 100%;
+      min-width: 670px;
+      border-collapse: collapse;
+    }
+
+    .roadmap-table th,
+    .roadmap-table td {
+      padding: 13px;
+      border: 2px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .roadmap-table th {
+      color: #fff9df;
+      background: var(--navy);
+    }
+
+    .roadmap-table td {
+      background: rgba(255, 249, 223, 0.78);
+    }
+
+    body.pcbang-mode .roadmap-table td {
+      background: rgba(47, 43, 37, 0.88);
+    }
+
+    .bottom-tabbar {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 60;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      height: calc(var(--tab-height) + env(safe-area-inset-bottom));
+      padding: 6px 6px calc(6px + env(safe-area-inset-bottom));
+      border-top: 3px solid var(--line);
+      background: rgba(255, 244, 202, 0.96);
+      box-shadow: 0 -4px 0 rgba(55, 35, 19, 0.16);
+      backdrop-filter: blur(10px);
+    }
+
+    body.pcbang-mode .bottom-tabbar {
+      background: rgba(37, 39, 51, 0.96);
+    }
+
+    .tab-button {
+      min-width: 0;
+      min-height: 50px;
+      padding: 4px 2px;
+      border: 0;
+      border-radius: 12px;
+      background: transparent;
+      box-shadow: none;
+      color: var(--muted);
+      flex-direction: column;
+      font-size: 11px;
+      line-height: 1.1;
+    }
+
+    .tab-icon {
+      font-size: 19px;
+      line-height: 1;
+    }
+
+    .tab-button.is-active {
+      color: #fff9df;
+      background: var(--red);
+      box-shadow: 2px 3px 0 var(--line);
+    }
+
+    .toast {
+      position: fixed;
+      right: 16px;
+      bottom: calc(var(--tab-height) + 18px + env(safe-area-inset-bottom));
+      left: 16px;
+      z-index: 80;
+      display: grid;
+      min-height: 48px;
+      padding: 12px 14px;
+      place-items: center;
+      border: 3px solid var(--line);
+      border-radius: 14px;
+      color: #fff9df;
+      background: var(--navy);
+      box-shadow: var(--shadow);
+      font-weight: 900;
+      text-align: center;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(18px);
+      transition: opacity 0.16s ease, transform 0.16s ease;
+    }
+
+    .toast.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+    }
+
+    @media (min-width: 768px) {
+      body {
+        padding-bottom: 0;
+      }
+
+      .app {
+        padding: 20px 22px 44px;
+      }
+
+      .top-header {
+        margin: 0 0 20px;
+        border-radius: var(--radius);
+      }
+
+      .desktop-nav {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+      }
+
+      .desktop-nav button {
+        min-height: 42px;
+        padding: 8px 10px;
+        border: 2px solid transparent;
+        border-radius: 10px;
+        color: var(--ink);
+        font-weight: 900;
+        background: transparent;
+        cursor: pointer;
+      }
+
+      .desktop-nav button:hover,
+      .desktop-nav button:focus-visible {
+        border-color: var(--line);
+        background: var(--paper-soft);
+      }
+
+      .hero {
+        grid-template-columns: minmax(0, 1.08fr) minmax(280px, 0.92fr);
+        align-items: stretch;
+        padding: 24px;
+      }
+
+      .hero h1 {
+        font-size: 46px;
+      }
+
+      .popular-strip {
+        grid-auto-flow: initial;
+        grid-auto-columns: initial;
+        grid-template-columns: repeat(4, 1fr);
+        overflow: visible;
+      }
+
+      .music-player {
+        grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.8fr);
+        gap: 18px;
+        padding: 16px;
+      }
+
+      .card-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .object-grid,
+      .arcade-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .guestbook-form {
+        grid-template-columns: minmax(150px, 0.7fr) minmax(150px, 0.7fr) minmax(260px, 1.6fr) auto;
+        align-items: stretch;
+      }
+
+      .guestbook-form textarea {
+        min-height: 46px;
+      }
+
+      .bottom-tabbar {
+        display: none;
+      }
+
+      .toast {
+        right: 24px;
+        bottom: 24px;
+        left: auto;
+        width: min(420px, calc(100vw - 48px));
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .card-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .object-grid,
+      .arcade-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .section {
+        margin-top: 38px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#home">본문으로 이동</a>
+  <div class="app">
+    <header class="top-header" aria-label="상단 메뉴">
+      <div class="brand" aria-label="온라인 탑골공원">
+        <span class="brand-mark" aria-hidden="true">TOP</span>
+        <span class="brand-text">온라인 탑골공원</span>
+      </div>
+      <nav class="desktop-nav" aria-label="데스크톱 섹션 메뉴">
+        <button type="button" data-scroll-target="home">홈</button>
+        <button type="button" data-scroll-target="music">음악다방</button>
+        <button type="button" data-scroll-target="photos">추억사진관</button>
+        <button type="button" data-scroll-target="board">붐업광장</button>
+        <button type="button" data-scroll-target="arcade">오락실</button>
+        <button type="button" data-scroll-target="guestbook">방명록</button>
+      </nav>
+      <div class="header-actions">
+        <button class="icon-button" id="header-search-button" type="button" aria-label="추억 사진관 검색으로 이동">검색</button>
+        <button class="icon-button" id="theme-toggle" type="button" aria-label="야간 PC방 모드 전환" aria-pressed="false">야간</button>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero section" id="home" aria-labelledby="hero-title">
+        <div class="hero-copy-wrap">
+          <span class="eyebrow">80·90년대생 온라인 추억 놀이터</span>
+          <h1 id="hero-title">온라인 탑골공원</h1>
+          <p class="hero-subtitle">싸이월드 BGM, 문방구 오락기, 플래시게임, 폴더폰 감성을 다시 꺼내보는 곳</p>
+          <p class="hero-quote" id="today-phrase">그때 우리는 모두 미니홈피 BGM 하나쯤은 진심이었다.</p>
+          <div class="badge-row" aria-label="레트로 키워드">
+            <span class="retro-badge">싸이월드</span>
+            <span class="retro-badge">버디버디</span>
+            <span class="retro-badge">MP3</span>
+            <span class="retro-badge">문방구</span>
+            <span class="retro-badge">플래시게임</span>
+          </div>
+          <div class="cta-row">
+            <button class="primary-button" type="button" data-scroll-target="music" aria-label="음악다방 섹션으로 이동">음악다방 입장</button>
+            <button class="secondary-button" type="button" data-scroll-target="photos" aria-label="추억 사진관 섹션으로 이동">추억사진 보기</button>
+          </div>
+        </div>
+        <div class="crt-box" aria-label="브라운관 안내 화면">
+          <span class="crt-label">MINIHOME READY</span>
+          <p>버디버디 로그인하던 그 시절, 기억나세요?</p>
+          <p>도토리 하나에도 감성이 있던 시대.</p>
+          <div class="crt-meter" aria-hidden="true"><span></span></div>
+        </div>
+      </section>
+
+      <section class="section" id="popular" aria-labelledby="popular-title">
+        <div class="section-head">
+          <div>
+            <span class="section-kicker">TODAY TOPGOL</span>
+            <h2 class="section-title" id="popular-title">오늘의 탑골 인기</h2>
+            <p class="section-note">붐업 누르고 추억 공유하기.</p>
+          </div>
+          <button class="tiny-button" id="phrase-button" type="button" aria-label="오늘의 추억 문구 바꾸기">문구 변경</button>
+        </div>
+        <div class="popular-strip" id="popular-list" aria-live="polite"></div>
+      </section>
+
+      <section class="section" id="music" aria-labelledby="music-title">
+        <div class="section-head">
+          <div>
+            <span class="section-kicker">MUSIC CAFE</span>
+            <h2 class="section-title" id="music-title">음악다방</h2>
+            <p class="section-note">오늘도 추억 한 곡 재생합니다.</p>
+          </div>
+        </div>
+        <div class="music-player">
+          <div>
+            <div class="player-frame">
+              <iframe id="youtube-player" title="추억 음악 YouTube 플레이어" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+            <div class="now-playing" aria-live="polite">
+              <strong id="current-music-title">재생 준비 중</strong>
+              <span id="current-music-description">플레이리스트에서 추억 버튼을 눌러주세요.</span>
+            </div>
+          </div>
+          <div class="playlist" id="playlist" aria-label="추억 음악 플레이리스트"></div>
+        </div>
+      </section>
+
+      <section class="section" id="photos" aria-labelledby="photos-title">
+        <div class="section-head">
+          <div>
+            <span class="section-kicker">PHOTO STUDIO</span>
+            <h2 class="section-title" id="photos-title">추억 사진관</h2>
+            <p class="section-note">폴더폰을 닫는 소리까지 추억이 된 사람들을 위한 공간.</p>
+          </div>
+        </div>
+        <div class="filter-panel" aria-label="추억 카드 검색과 필터">
+          <div class="search-row">
+            <label class="sr-only" for="card-search">추억 카드 검색</label>
+            <input id="card-search" type="search" placeholder="폴더폰, 도토리, 문방구 검색" autocomplete="off">
+            <button class="tiny-button" id="random-card-button" type="button" aria-label="랜덤 추억 카드 뽑기">랜덤</button>
+          </div>
+          <div class="filter-row" id="category-filters" aria-label="카테고리 필터">
+            <button class="filter-chip is-active" type="button" data-category="전체">전체</button>
+            <button class="filter-chip" type="button" data-category="물건">물건</button>
+            <button class="filter-chip" type="button" data-category="인터넷문화">인터넷문화</button>
+            <button class="filter-chip" type="button" data-category="게임문화">게임문화</button>
+            <button class="filter-chip" type="button" data-category="공간">공간</button>
+            <button class="filter-chip" type="button" data-category="먹거리">먹거리</button>
+            <button class="filter-chip" type="button" data-category="음악문화">음악문화</button>
+          </div>
+        </div>
+        <div class="card-grid" id="nostalgia-card-list" aria-live="polite"></div>
+      </section>
+
+      <section class="section" id="board" aria-labelledby="board-title">
+        <div class="section-head">
+          <div>
+            <span class="section-kicker">BOOM UP SQUARE</span>
+            <h2 class="section-title" id="board-title">붐업 게시판</h2>
+            <p class="section-note">이건 진짜 기억나면 80·90년대생 인증.</p>
+          </div>
+        </div>
+        <div class="section-panel">
+          <div class="board-list" id="board-list"></div>
+        </div>
+      </section>
+
+      <section class="section" id="arcade" aria-labelledby="arcade-title">
+        <div class="section-head">
+          <div>
+            <span class="section-kicker">ARCADE</span>
+            <h2 class="section-title" id="arcade-title">탑골 오락실</h2>
+            <p class="section-note">문방구 앞 100원짜리 오락기에서 하루가 사라지던 시절.</p>
+          </div>
+        </div>
+        <div class="arcade-grid">
+          <article class="arcade-card">
+            <span class="arcade-icon" aria-hidden="true">🕹️</span>
+            <h3>FlashArch 플래시게임</h3>
+            <p>고전 플래시게임을 웹에서 찾아볼 수 있는 아카이브 메뉴.</p>
+            <a class="button-link" href="https://flasharch.com/" target="_blank" rel="noopener noreferrer" aria-label="FlashArch 새 창으로 열기">새 창으로 이동</a>
+          </article>
+          <article class="arcade-card">
+            <span class="arcade-icon" aria-hidden="true">💿</span>
+            <h3>Ruffle SWF 실행</h3>
+            <p>브라우저에서 SWF를 보존 재생하는 오픈소스 프로젝트.</p>
+            <a class="button-link" href="https://ruffle.rs/" target="_blank" rel="noopener noreferrer" aria-label="Ruffle 새 창으로 열기">새 창으로 이동</a>
+          </article>
+          <article class="arcade-card">
+            <span class="arcade-icon" aria-hidden="true">📦</span>
+            <h3>Internet Archive Flash</h3>
+            <p>합법적인 보존 목적의 플래시 소프트웨어 라이브러리.</p>
+            <a class="button-link" href="https://archive.org/details/softwarelibrary_flash" target="_blank" rel="noopener noreferrer" aria-label="Internet Archive Flash Library 새 창으로 열기">새 창으로 이동</a>
+          </article>
+        </div>
+        <div class="quiz-box">
+          <strong>초성 퀴즈: ㅆㅇㅇㄷ에서 도토리로 사던 것은?</strong>
+          <div class="quiz-options">
+            <button class="tiny-button" type="button" data-quiz-answer="wrong">스티커사진</button>
+            <button class="tiny-button" type="button" data-quiz-answer="right">미니홈피 BGM</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="objects" aria-labelledby="objects-title">
+        <div class="section-head">
+          <div>
+            <span class="section-kicker">ARCHIVE</span>
+            <h2 class="section-title" id="objects-title">그때 그 물건</h2>
+            <p class="section-note">카세트테이프, 디스켓, 컵떡볶이까지 한 줄 아카이브.</p>
+          </div>
+        </div>
+        <div class="object-grid" id="object-list"></div>
+      </section>
+
+      <section class="section" id="guestbook" aria-labelledby="guestbook-title">
+        <div class="section-head">
+          <div>
+            <span class="section-kicker">GUEST BOOK</span>
+            <h2 class="section-title" id="guestbook-title">추억 방명록</h2>
+            <p class="section-note">도토리부자, 빛나는별 같은 닉네임 환영.</p>
+          </div>
+        </div>
+        <form class="guestbook-form" id="guestbook-form">
+          <label class="sr-only" for="guest-nickname">닉네임</label>
+          <input id="guest-nickname" name="nickname" type="text" placeholder="닉네임" maxlength="16" autocomplete="nickname">
+          <label class="sr-only" for="guest-category">카테고리</label>
+          <select id="guest-category" name="category">
+            <option value="싸이월드">싸이월드</option>
+            <option value="버디버디">버디버디</option>
+            <option value="문방구">문방구</option>
+            <option value="PC방">PC방</option>
+            <option value="노래방">노래방</option>
+            <option value="기타추억">기타추억</option>
+          </select>
+          <label class="sr-only" for="guest-message">방명록 내용</label>
+          <textarea id="guest-message" name="message" placeholder="짧은 추억을 남겨주세요" maxlength="180"></textarea>
+          <button class="primary-button" type="submit" aria-label="방명록 등록">등록</button>
+        </form>
+        <div class="guestbook-list" id="guestbook-list" aria-live="polite"></div>
+      </section>
+
+      <section class="section" id="roadmap" aria-labelledby="roadmap-title">
+        <div class="section-head">
+          <div>
+            <span class="section-kicker">ROADMAP</span>
+            <h2 class="section-title" id="roadmap-title">서비스 개발 로드맵</h2>
+            <p class="section-note">HTML 데모에서 Firebase 커뮤니티로 확장하는 순서.</p>
+          </div>
+        </div>
+        <div class="roadmap-wrap" tabindex="0" aria-label="서비스 개발 로드맵 표">
+          <table class="roadmap-table">
+            <thead>
+              <tr>
+                <th scope="col">단계</th>
+                <th scope="col">핵심 기능</th>
+                <th scope="col">목표</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1차 MVP</td>
+                <td>HTML/CSS/JS, YouTube 임베드, localStorage 댓글, 붐업/붐따</td>
+                <td>모바일에서 바로 쓰는 추억 커뮤니티 시안</td>
+              </tr>
+              <tr>
+                <td>2차</td>
+                <td>Firebase Auth, Firestore 게시글/댓글, Firebase Storage 이미지 업로드, 신고 기능, 관리자 페이지</td>
+                <td>로그인 기반 실제 커뮤니티 운영</td>
+              </tr>
+              <tr>
+                <td>3차</td>
+                <td>태그 검색, 인기 차트, 사용자 프로필, 플레이리스트 저장, PWA 설치</td>
+                <td>재방문과 개인화 강화</td>
+              </tr>
+              <tr>
+                <td>4차</td>
+                <td>광고 배너, 광고 제거 구독, 추억앨범 PDF 저장, 굿즈 제휴</td>
+                <td>지속 가능한 서비스 모델 검증</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <nav class="bottom-tabbar" aria-label="모바일 하단 탭바">
+    <button class="tab-button is-active" type="button" data-scroll-target="home" aria-label="홈으로 이동">
+      <span class="tab-icon" aria-hidden="true">🏠</span>
+      <span>홈</span>
+    </button>
+    <button class="tab-button" type="button" data-scroll-target="music" aria-label="음악다방으로 이동">
+      <span class="tab-icon" aria-hidden="true">🎵</span>
+      <span>음악</span>
+    </button>
+    <button class="tab-button" type="button" data-scroll-target="photos" aria-label="추억 사진관으로 이동">
+      <span class="tab-icon" aria-hidden="true">📷</span>
+      <span>사진</span>
+    </button>
+    <button class="tab-button" type="button" data-scroll-target="board" aria-label="붐업 게시판으로 이동">
+      <span class="tab-icon" aria-hidden="true">📌</span>
+      <span>게시판</span>
+    </button>
+    <button class="tab-button" type="button" data-scroll-target="arcade" aria-label="탑골 오락실로 이동">
+      <span class="tab-icon" aria-hidden="true">🕹️</span>
+      <span>오락실</span>
+    </button>
+  </nav>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    const STORAGE_KEY = "onlineTapgolParkState:v1";
+
+    const nostalgiaCards = [
+      {
+        id: "phone-001",
+        category: "물건",
+        title: "폴더폰 열고 닫던 그 소리",
+        description: "문자 100건 제한, 컬러링, 액정 보호필름, 그리고 배터리 두 개 들고 다니던 시절.",
+        icon: "📱",
+        tags: ["폴더폰", "컬러링", "문자"],
+        up: 128,
+        down: 3,
+        comments: [
+          { id: "c-phone-001", nickname: "2G감성", message: "딸깍 소리 아직도 기억나요.", createdAt: "2026-05-06" }
+        ]
+      },
+      {
+        id: "mp3-001",
+        category: "물건",
+        title: "목에 걸던 MP3 플레이어",
+        description: "128MB에 노래 몇 곡 넣고도 세상을 다 가진 것 같던 통학길 필수품.",
+        icon: "🎧",
+        tags: ["MP3", "아이리버", "통학길"],
+        up: 96,
+        down: 2,
+        comments: []
+      },
+      {
+        id: "disk-001",
+        category: "물건",
+        title: "저장 버튼 누르던 디스켓",
+        description: "숙제 파일 하나 넣으려고 조심조심 들고 다니던 1.44MB의 무게감.",
+        icon: "💾",
+        tags: ["디스켓", "컴퓨터실", "숙제"],
+        up: 84,
+        down: 5,
+        comments: []
+      },
+      {
+        id: "cassette-001",
+        category: "음악문화",
+        title: "카세트테이프 뒤집는 타이밍",
+        description: "라디오에서 좋아하는 노래 나오면 녹음 버튼부터 누르던 손맛.",
+        icon: "📼",
+        tags: ["카세트", "라디오", "녹음"],
+        up: 76,
+        down: 4,
+        comments: []
+      },
+      {
+        id: "arcade-001",
+        category: "게임문화",
+        title: "문방구 앞 100원 오락기",
+        description: "집에 가야 하는데 한 판만 더 하다가 해가 지던 하교길.",
+        icon: "🕹️",
+        tags: ["문방구", "오락기", "100원"],
+        up: 151,
+        down: 1,
+        comments: [
+          { id: "c-arcade-001", nickname: "콤보왕", message: "철권 동전 올려두고 순서 기다렸죠.", createdAt: "2026-05-06" }
+        ]
+      },
+      {
+        id: "sticker-001",
+        category: "학교생활",
+        title: "스티커사진 가위질 감성",
+        description: "친구랑 찍고 한 장씩 나눠 다이어리 맨 앞에 붙이던 약속의 증거.",
+        icon: "📸",
+        tags: ["스티커사진", "다이어리", "친구"],
+        up: 89,
+        down: 2,
+        comments: []
+      },
+      {
+        id: "snack-001",
+        category: "먹거리",
+        title: "불량식품 골라 담던 시간",
+        description: "아폴로, 쫀드기, 밭두렁, 컵떡볶이까지 천 원이면 축제였던 오후.",
+        icon: "🍭",
+        tags: ["불량식품", "컵떡볶이", "문방구"],
+        up: 137,
+        down: 6,
+        comments: []
+      },
+      {
+        id: "comic-001",
+        category: "공간",
+        title: "만화책방 라면 냄새",
+        description: "슬램덩크 한 권 더 보려다 시간제 요금이 슬금슬금 올라가던 곳.",
+        icon: "📚",
+        tags: ["만화책방", "라면", "대여"],
+        up: 102,
+        down: 4,
+        comments: []
+      },
+      {
+        id: "pcbang-001",
+        category: "공간",
+        title: "PC방 야간 정액",
+        description: "친구들과 밤새 스타, 카트, 포트리스 하던 키보드 소리와 컵라면 냄새.",
+        icon: "🖥️",
+        tags: ["PC방", "야간정액", "컵라면"],
+        up: 163,
+        down: 8,
+        comments: []
+      },
+      {
+        id: "buddy-001",
+        category: "인터넷문화",
+        title: "버디버디 상태메시지",
+        description: "괜히 의미심장한 영어 문장으로 마음을 들키던 메신저의 밤.",
+        icon: "💬",
+        tags: ["버디버디", "상태메시지", "메신저"],
+        up: 118,
+        down: 7,
+        comments: []
+      },
+      {
+        id: "cyworld-001",
+        category: "인터넷문화",
+        title: "싸이월드 도토리 경제",
+        description: "스킨, 미니미, 배경음악 하나에 취향과 관계가 드러나던 미니홈피 시대.",
+        icon: "🌰",
+        tags: ["싸이월드", "도토리", "일촌"],
+        up: 181,
+        down: 2,
+        comments: [
+          { id: "c-cy-001", nickname: "도토리부자", message: "일촌평은 진짜 조심해서 써야 했어요.", createdAt: "2026-05-06" }
+        ]
+      },
+      {
+        id: "soribada-001",
+        category: "음악문화",
+        title: "소리바다에서 밤새 받던 노래",
+        description: "파일명 뒤에 live, remix, final이 붙으면 일단 받아보고 확인하던 시절.",
+        icon: "🌊",
+        tags: ["소리바다", "MP3", "다운로드"],
+        up: 122,
+        down: 9,
+        comments: []
+      },
+      {
+        id: "hangame-001",
+        category: "게임문화",
+        title: "한게임 고스톱 로비",
+        description: "로비 음악만 들어도 주말 오후 컴퓨터방 풍경이 자동 재생되는 메뉴.",
+        icon: "🎴",
+        tags: ["한게임", "고스톱", "로비"],
+        up: 73,
+        down: 4,
+        comments: []
+      },
+      {
+        id: "yahoo-001",
+        category: "인터넷문화",
+        title: "야후꾸러기 게임방",
+        description: "숙제한다고 컴퓨터 켜놓고 어느새 플래시게임으로 빠져들던 포털 놀이터.",
+        icon: "🌐",
+        tags: ["야후꾸러기", "쥬니어네이버", "플래시게임"],
+        up: 149,
+        down: 3,
+        comments: []
+      }
+    ];
+
+    const musicList = [
+      {
+        id: "song-001",
+        title: "싸이월드 BGM 감성",
+        description: "미니홈피 대문에 깔아두던 그 분위기",
+        youtubeId: "U7mPqycQ0tQ"
+      },
+      {
+        id: "song-002",
+        title: "2000년대 초반 발라드",
+        description: "노래방 책자에서 번호 외우던 발라드 감성",
+        youtubeId: "7maJOI3QMu0"
+      },
+      {
+        id: "song-003",
+        title: "노래방 국민곡",
+        description: "마이크 두 개 잡고 후렴에서 다 같이 들어오던 순간",
+        youtubeId: "fJ9rUzIMcZQ"
+      },
+      {
+        id: "song-004",
+        title: "추억의 댄스곡",
+        description: "반 장기자랑과 수련회 무대를 책임지던 템포",
+        youtubeId: "QZBn1e9pr2Q"
+      },
+      {
+        id: "song-005",
+        title: "애니메이션 OST",
+        description: "학교 끝나고 TV 앞에 앉던 그 시간대",
+        youtubeId: "dQw4w9WgXcQ"
+      },
+      {
+        id: "song-006",
+        title: "게임 BGM",
+        description: "로그인 화면만 떠도 심장이 반응하던 멜로디",
+        youtubeId: "M7lc1UVf-VE"
+      }
+    ];
+
+    const guestbook = [
+      {
+        id: "guest-001",
+        nickname: "도토리부자",
+        category: "싸이월드",
+        message: "도토리 모아서 배경음악 사던 기억이 아직도 납니다.",
+        createdAt: "2026-05-06"
+      },
+      {
+        id: "guest-002",
+        nickname: "문방구VIP",
+        category: "문방구",
+        message: "컵떡볶이 500원 시절이 제일 그립네요.",
+        createdAt: "2026-05-06"
+      }
+    ];
+
+    const boardPosts = [
+      {
+        id: "post-001",
+        title: "그때 노래방에서 이 노래 안 부른 사람 있나요?",
+        nickname: "마이크잡이",
+        category: "노래방",
+        up: 342,
+        down: 8,
+        comments: 51,
+        hits: 2204,
+        createdAt: "2026-05-06",
+        hot: true
+      },
+      {
+        id: "post-002",
+        title: "버디버디 상태메시지 흑역사 모음",
+        nickname: "흑역사보관함",
+        category: "버디버디",
+        up: 287,
+        down: 15,
+        comments: 76,
+        hits: 1844,
+        createdAt: "2026-05-05",
+        hot: true
+      },
+      {
+        id: "post-003",
+        title: "문방구 컵떡볶이 500원 시절",
+        nickname: "떡볶이국물파",
+        category: "문방구",
+        up: 198,
+        down: 4,
+        comments: 33,
+        hits: 1198,
+        createdAt: "2026-05-04",
+        hot: false
+      },
+      {
+        id: "post-004",
+        title: "소리바다에서 밤새 받던 그 시절",
+        nickname: "느린모뎀",
+        category: "음악문화",
+        up: 176,
+        down: 12,
+        comments: 24,
+        hits: 980,
+        createdAt: "2026-05-03",
+        hot: false
+      },
+      {
+        id: "post-005",
+        title: "싸이월드 일촌평 아직 기억나는 사람?",
+        nickname: "일촌평장인",
+        category: "싸이월드",
+        up: 254,
+        down: 6,
+        comments: 68,
+        hits: 1730,
+        createdAt: "2026-05-02",
+        hot: true
+      }
+    ];
+
+    const itemArchive = [
+      {
+        id: "item-001",
+        category: "전자기기",
+        name: "삐삐와 공중전화",
+        description: "숫자 암호로 마음을 전하고, 전화카드 잔액을 확인하던 통신 감성.",
+        tags: ["삐삐", "공중전화", "전화카드"],
+        remember: 74,
+        unknown: 8
+      },
+      {
+        id: "item-002",
+        category: "학교생활",
+        name: "모나미 볼펜 분해 놀이",
+        description: "수업 중 괜히 스프링 빼고 조립하다가 굴러가던 책상 위 장면.",
+        tags: ["학교", "필통", "모나미"],
+        remember: 91,
+        unknown: 3
+      },
+      {
+        id: "item-003",
+        category: "문방구",
+        name: "탑블레이드 팽이",
+        description: "운동장 구석에서 경기장 없이도 세계대회처럼 진지했던 쉬는 시간.",
+        tags: ["문방구", "팽이", "쉬는시간"],
+        remember: 116,
+        unknown: 5
+      },
+      {
+        id: "item-004",
+        category: "먹거리",
+        name: "피카츄 돈가스",
+        description: "케첩과 머스터드 줄무늬가 완성하던 하교길 대표 간식.",
+        tags: ["분식", "간식", "하교길"],
+        remember: 142,
+        unknown: 2
+      },
+      {
+        id: "item-005",
+        category: "인터넷문화",
+        name: "다모임과 세이클럽",
+        description: "아바타 꾸미고 채팅방 들어가던 초기 인터넷 커뮤니티의 온도.",
+        tags: ["다모임", "세이클럽", "아바타"],
+        remember: 68,
+        unknown: 12
+      },
+      {
+        id: "item-006",
+        category: "게임문화",
+        name: "쥬니어네이버 게임랜드",
+        description: "초록 검색창 너머로 열리던 방과 후 플래시게임 세계.",
+        tags: ["쥬니버", "게임랜드", "플래시"],
+        remember: 131,
+        unknown: 4
+      }
+    ];
+
+    const retroPhrases = [
+      "그때 우리는 모두 미니홈피 BGM 하나쯤은 진심이었다.",
+      "버디버디 로그인하던 그 시절, 기억나세요?",
+      "도토리 하나에도 감성이 있던 시대.",
+      "폴더폰을 닫는 소리까지 추억이 된 사람들을 위한 공간.",
+      "이건 진짜 기억나면 80·90년대생 인증.",
+      "소리바다 다운로드 바가 99%에서 멈추면 심장도 멈췄다."
+    ];
+
+    const uiState = {
+      currentCategory: "전체",
+      searchQuery: "",
+      selectedMusicId: musicList[0].youtubeId,
+      openCommentCardId: null,
+      highlightCardId: null,
+      nightMode: false
+    };
+
+    let toastTimer = null;
+
+    function init() {
+      loadState();
+      applyTheme();
+      renderPopular();
+      renderMusicList();
+      changeMusic(uiState.selectedMusicId, true);
+      renderNostalgiaCards();
+      renderBoard();
+      renderObjectArchive();
+      renderGuestbook();
+      bindEvents();
+      setupSectionObserver();
+    }
+
+    function renderCards() {
+      renderNostalgiaCards();
+    }
+
+    function renderPopular() {
+      const popularList = document.getElementById("popular-list");
+      const topCard = [...nostalgiaCards].sort((a, b) => b.up - a.up)[0];
+      const topPost = [...boardPosts].sort((a, b) => b.up - a.up)[0];
+      const song = musicList.find((item) => item.youtubeId === uiState.selectedMusicId) || musicList[0];
+
+      popularList.innerHTML = [
+        {
+          icon: "🌰",
+          title: "오늘의 인기 추억",
+          body: `${topCard.title} · 붐업 ${topCard.up}`
+        },
+        {
+          icon: "📌",
+          title: "오늘의 붐업 게시글",
+          body: `${topPost.title} · 리플 ${topPost.comments}`
+        },
+        {
+          icon: "🎵",
+          title: "오늘의 추천 노래",
+          body: `${song.title} · ${song.description}`
+        },
+        {
+          icon: "🕹️",
+          title: "오늘의 오락실 링크",
+          body: "FlashArch와 Ruffle로 플래시게임 추억 탐방"
+        }
+      ].map((item) => `
+        <article class="mini-card">
+          <span class="mini-icon" aria-hidden="true">${item.icon}</span>
+          <strong>${escapeHTML(item.title)}</strong>
+          <p>${escapeHTML(item.body)}</p>
+        </article>
+      `).join("");
+    }
+
+    function renderMusicList() {
+      const playlist = document.getElementById("playlist");
+      playlist.innerHTML = musicList.map((song) => {
+        const isActive = song.youtubeId === uiState.selectedMusicId;
+        return `
+          <button class="playlist-button ${isActive ? "is-active" : ""}" type="button" data-youtube-id="${escapeHTML(song.youtubeId)}" aria-label="${escapeHTML(song.title)} 재생">
+            <span>
+              ${isActive ? "▶ " : ""}${escapeHTML(song.title)}
+              <small>${escapeHTML(song.description)}</small>
+            </span>
+          </button>
+        `;
+      }).join("");
+    }
+
+    function changeMusic(youtubeId, silent = false) {
+      const song = musicList.find((item) => item.youtubeId === youtubeId) || musicList[0];
+      uiState.selectedMusicId = song.youtubeId;
+      document.getElementById("youtube-player").src = `https://www.youtube.com/embed/${encodeURIComponent(song.youtubeId)}?rel=0&modestbranding=1`;
+      document.getElementById("current-music-title").textContent = song.title;
+      document.getElementById("current-music-description").textContent = song.description;
+      renderMusicList();
+      renderPopular();
+      if (!silent) {
+        showToast("오늘도 추억 한 곡 재생합니다.");
+      }
+    }
+
+    function renderNostalgiaCards() {
+      const list = document.getElementById("nostalgia-card-list");
+      const query = uiState.searchQuery.trim().toLowerCase();
+      const filteredCards = nostalgiaCards.filter((card) => {
+        const categoryMatch = uiState.currentCategory === "전체" || card.category === uiState.currentCategory;
+        const haystack = [card.title, card.description, card.category, ...card.tags].join(" ").toLowerCase();
+        return categoryMatch && (!query || haystack.includes(query));
+      });
+
+      updateFilterButtons();
+
+      if (!filteredCards.length) {
+        list.innerHTML = `<div class="empty-state">검색된 추억이 없습니다. 다른 키워드를 눌러보세요.</div>`;
+        return;
+      }
+
+      list.innerHTML = filteredCards.map((card) => {
+        const isOpen = uiState.openCommentCardId === card.id;
+        const isPicked = uiState.highlightCardId === card.id;
+        return `
+          <article class="nostalgia-card ${isPicked ? "is-picked" : ""}" id="nostalgia-card-${escapeHTML(card.id)}">
+            <div class="thumb" role="img" aria-label="${escapeHTML(card.title)} 이미지 자리">
+              <span class="thumb-icon" aria-hidden="true">${card.icon}</span>
+            </div>
+            <h3>${escapeHTML(card.title)}</h3>
+            <p>${escapeHTML(card.description)}</p>
+            <div class="tag-list" aria-label="${escapeHTML(card.title)} 태그">
+              ${card.tags.map((tag) => `<span class="tag">#${escapeHTML(tag)}</span>`).join("")}
+            </div>
+            <div class="vote-row">
+              <button class="vote-button up" type="button" data-vote-card="${escapeHTML(card.id)}" data-vote-type="up" aria-label="${escapeHTML(card.title)} 붐업">
+                붐업 ${card.up}
+              </button>
+              <button class="vote-button down" type="button" data-vote-card="${escapeHTML(card.id)}" data-vote-type="down" aria-label="${escapeHTML(card.title)} 붐따">
+                붐따 ${card.down}
+              </button>
+              <button class="vote-button" type="button" data-comment-toggle="${escapeHTML(card.id)}" aria-expanded="${isOpen ? "true" : "false"}" aria-label="${escapeHTML(card.title)} 리플 보기">
+                리플 ${card.comments.length}
+              </button>
+            </div>
+            <div class="comment-panel ${isOpen ? "is-open" : ""}" id="comment-panel-${escapeHTML(card.id)}">
+              <div class="comment-list">
+                ${renderCardComments(card.comments)}
+              </div>
+              <div class="comment-form-row">
+                <input id="card-comment-nickname-${escapeHTML(card.id)}" type="text" maxlength="14" placeholder="닉네임" aria-label="${escapeHTML(card.title)} 리플 닉네임">
+                <textarea id="card-comment-message-${escapeHTML(card.id)}" maxlength="120" placeholder="이 추억에 리플 남기기" aria-label="${escapeHTML(card.title)} 리플 내용"></textarea>
+                <button class="tiny-button" type="button" data-card-comment-submit="${escapeHTML(card.id)}">리플 등록</button>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join("");
+    }
+
+    function renderCardComments(comments) {
+      if (!comments.length) {
+        return `<div class="comment-chip">아직 리플이 없습니다. 첫 추억을 남겨보세요.</div>`;
+      }
+
+      return comments.slice(0, 3).map((comment) => `
+        <div class="comment-chip">
+          <strong>${escapeHTML(comment.nickname)}</strong>
+          <span> · ${escapeHTML(comment.createdAt)}</span>
+          <div>${escapeHTML(comment.message)}</div>
+        </div>
+      `).join("");
+    }
+
+    function handleVote(cardId, type) {
+      const card = nostalgiaCards.find((item) => item.id === cardId);
+      if (!card || !["up", "down"].includes(type)) {
+        return;
+      }
+
+      card[type] += 1;
+      saveState();
+      renderNostalgiaCards();
+      renderPopular();
+      showToast(type === "up" ? "붐업 완료! 추억력이 상승했습니다." : "붐따 완료. 그래도 추억은 존중합니다.");
+    }
+
+    function addCardComment(cardId) {
+      const card = nostalgiaCards.find((item) => item.id === cardId);
+      const nicknameInput = document.getElementById(`card-comment-nickname-${cardId}`);
+      const messageInput = document.getElementById(`card-comment-message-${cardId}`);
+
+      if (!card || !nicknameInput || !messageInput) {
+        return;
+      }
+
+      const nickname = nicknameInput.value.trim() || "익명일촌";
+      const message = messageInput.value.trim();
+
+      if (!message) {
+        showToast("리플 내용을 입력해주세요.");
+        messageInput.focus();
+        return;
+      }
+
+      card.comments.unshift({
+        id: `comment-${Date.now()}`,
+        nickname,
+        message,
+        createdAt: getTodayString()
+      });
+
+      saveState();
+      renderNostalgiaCards();
+      showToast("리플이 등록되었습니다.");
+    }
+
+    function filterCards(category) {
+      uiState.currentCategory = category || "전체";
+      renderNostalgiaCards();
+    }
+
+    function updateFilterButtons() {
+      document.querySelectorAll("[data-category]").forEach((button) => {
+        button.classList.toggle("is-active", button.dataset.category === uiState.currentCategory);
+      });
+    }
+
+    function renderBoard() {
+      const boardList = document.getElementById("board-list");
+      boardList.innerHTML = boardPosts.map((post) => `
+        <article class="board-post">
+          <h3>${escapeHTML(post.title)}</h3>
+          <p>${escapeHTML(post.nickname)} · ${escapeHTML(post.category)} · ${escapeHTML(post.createdAt)}</p>
+          <div class="board-meta">
+            ${post.hot ? `<span class="pill hot">인기글</span>` : ""}
+            <span class="pill">붐업 ${post.up}</span>
+            <span class="pill">붐따 ${post.down}</span>
+            <span class="pill">리플 ${post.comments}</span>
+            <span class="pill blue">히트 ${post.hits}</span>
+          </div>
+        </article>
+      `).join("");
+    }
+
+    function renderObjectArchive() {
+      const objectList = document.getElementById("object-list");
+      objectList.innerHTML = itemArchive.map((item) => `
+        <article class="object-card">
+          <span class="pill blue">${escapeHTML(item.category)}</span>
+          <h3>${escapeHTML(item.name)}</h3>
+          <p>${escapeHTML(item.description)}</p>
+          <div class="tag-list">
+            ${item.tags.map((tag) => `<span class="tag">#${escapeHTML(tag)}</span>`).join("")}
+          </div>
+          <div class="object-actions">
+            <button class="vote-button up" type="button" data-item-id="${escapeHTML(item.id)}" data-item-reaction="remember" aria-label="${escapeHTML(item.name)} 나도 기억남">
+              기억남 ${item.remember}
+            </button>
+            <button class="vote-button" type="button" data-item-id="${escapeHTML(item.id)}" data-item-reaction="unknown" aria-label="${escapeHTML(item.name)} 이건 몰랐음">
+              몰랐음 ${item.unknown}
+            </button>
+          </div>
+        </article>
+      `).join("");
+    }
+
+    function handleItemReaction(itemId, type) {
+      const item = itemArchive.find((entry) => entry.id === itemId);
+      if (!item || !["remember", "unknown"].includes(type)) {
+        return;
+      }
+
+      item[type] += 1;
+      saveState();
+      renderObjectArchive();
+      showToast(type === "remember" ? "기억 저장 완료!" : "새로운 추억을 발견했습니다.");
+    }
+
+    function renderGuestbook() {
+      const guestbookList = document.getElementById("guestbook-list");
+
+      if (!guestbook.length) {
+        guestbookList.innerHTML = `<div class="empty-state">아직 방명록이 비어 있습니다.</div>`;
+        return;
+      }
+
+      guestbookList.innerHTML = guestbook.map((entry) => `
+        <article class="guest-entry">
+          <strong>${escapeHTML(entry.nickname)}</strong>
+          <p>${escapeHTML(entry.message)}</p>
+          <div class="guest-meta">
+            <span class="pill">${escapeHTML(entry.category)}</span>
+            <span class="pill blue">${escapeHTML(entry.createdAt)}</span>
+          </div>
+        </article>
+      `).join("");
+    }
+
+    function addGuestbook() {
+      const nicknameInput = document.getElementById("guest-nickname");
+      const categoryInput = document.getElementById("guest-category");
+      const messageInput = document.getElementById("guest-message");
+      const nickname = nicknameInput.value.trim() || "익명일촌";
+      const category = categoryInput.value;
+      const message = messageInput.value.trim();
+
+      if (!message) {
+        showToast("방명록 내용을 입력해주세요.");
+        messageInput.focus();
+        return;
+      }
+
+      guestbook.unshift({
+        id: `guest-${Date.now()}`,
+        nickname,
+        category,
+        message,
+        createdAt: getTodayString()
+      });
+
+      saveState();
+      renderGuestbook();
+      nicknameInput.value = "";
+      messageInput.value = "";
+      showToast("방명록이 등록되었습니다.");
+    }
+
+    function saveState() {
+      const state = {
+        nostalgiaCards,
+        guestbook,
+        itemArchive,
+        settings: {
+          nightMode: uiState.nightMode
+        }
+      };
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    }
+
+    function loadState() {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (!saved) {
+        return;
+      }
+
+      try {
+        const state = JSON.parse(saved);
+        if (Array.isArray(state.nostalgiaCards)) {
+          replaceArray(nostalgiaCards, state.nostalgiaCards);
+        }
+        if (Array.isArray(state.guestbook)) {
+          replaceArray(guestbook, state.guestbook);
+        }
+        if (Array.isArray(state.itemArchive)) {
+          replaceArray(itemArchive, state.itemArchive);
+        }
+        if (state.settings && typeof state.settings.nightMode === "boolean") {
+          uiState.nightMode = state.settings.nightMode;
+        }
+      } catch (error) {
+        console.warn("저장된 탑골공원 데이터를 불러오지 못했습니다.", error);
+      }
+    }
+
+    function saveToLocalStorage() {
+      saveState();
+    }
+
+    function loadFromLocalStorage() {
+      loadState();
+    }
+
+    function replaceArray(target, source) {
+      target.splice(0, target.length, ...source);
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById("toast");
+      toast.textContent = message;
+      toast.classList.add("is-visible");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toast.classList.remove("is-visible");
+      }, 2000);
+    }
+
+    function escapeHTML(text) {
+      return String(text)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    function scrollToSection(id) {
+      const target = document.getElementById(id);
+      if (!target) {
+        return;
+      }
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+      updateActiveTabs(id);
+    }
+
+    function updateActiveTabs(id) {
+      document.querySelectorAll(".tab-button").forEach((button) => {
+        button.classList.toggle("is-active", button.dataset.scrollTarget === id);
+      });
+    }
+
+    function getTodayString() {
+      return new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Seoul" }).format(new Date());
+    }
+
+    function pickRandomCard() {
+      const card = nostalgiaCards[Math.floor(Math.random() * nostalgiaCards.length)];
+      uiState.currentCategory = "전체";
+      uiState.searchQuery = "";
+      uiState.highlightCardId = card.id;
+      document.getElementById("card-search").value = "";
+      renderNostalgiaCards();
+      requestAnimationFrame(() => {
+        document.getElementById(`nostalgia-card-${card.id}`)?.scrollIntoView({ behavior: "smooth", block: "center" });
+      });
+      showToast(`${card.title} 추억을 뽑았습니다.`);
+      setTimeout(() => {
+        uiState.highlightCardId = null;
+        renderNostalgiaCards();
+      }, 2800);
+    }
+
+    function changeTodayPhrase() {
+      const phrase = retroPhrases[Math.floor(Math.random() * retroPhrases.length)];
+      document.getElementById("today-phrase").textContent = phrase;
+      showToast("오늘의 추억 문구를 바꿨습니다.");
+    }
+
+    function toggleNightMode() {
+      uiState.nightMode = !uiState.nightMode;
+      applyTheme();
+      saveState();
+      showToast(uiState.nightMode ? "야간 PC방 모드 ON" : "야간 PC방 모드 OFF");
+    }
+
+    function applyTheme() {
+      document.body.classList.toggle("pcbang-mode", uiState.nightMode);
+      const toggle = document.getElementById("theme-toggle");
+      if (toggle) {
+        toggle.setAttribute("aria-pressed", String(uiState.nightMode));
+        toggle.textContent = uiState.nightMode ? "야간 ON" : "야간";
+      }
+    }
+
+    function setupSectionObserver() {
+      if (!("IntersectionObserver" in window)) {
+        return;
+      }
+
+      const tabTargets = ["home", "music", "photos", "board", "arcade"];
+      const observer = new IntersectionObserver((entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible) {
+          updateActiveTabs(visible.target.id);
+        }
+      }, {
+        rootMargin: "-35% 0px -50% 0px",
+        threshold: [0.08, 0.2, 0.45]
+      });
+
+      tabTargets.forEach((id) => {
+        const section = document.getElementById(id);
+        if (section) {
+          observer.observe(section);
+        }
+      });
+    }
+
+    function bindEvents() {
+      document.querySelectorAll("[data-scroll-target]").forEach((button) => {
+        button.addEventListener("click", () => scrollToSection(button.dataset.scrollTarget));
+      });
+
+      document.getElementById("header-search-button").addEventListener("click", () => {
+        scrollToSection("photos");
+        setTimeout(() => document.getElementById("card-search").focus(), 420);
+      });
+
+      document.getElementById("theme-toggle").addEventListener("click", toggleNightMode);
+      document.getElementById("phrase-button").addEventListener("click", changeTodayPhrase);
+      document.getElementById("random-card-button").addEventListener("click", pickRandomCard);
+
+      document.getElementById("playlist").addEventListener("click", (event) => {
+        const button = event.target.closest("[data-youtube-id]");
+        if (button) {
+          changeMusic(button.dataset.youtubeId);
+        }
+      });
+
+      document.getElementById("category-filters").addEventListener("click", (event) => {
+        const button = event.target.closest("[data-category]");
+        if (button) {
+          filterCards(button.dataset.category);
+        }
+      });
+
+      document.getElementById("card-search").addEventListener("input", (event) => {
+        uiState.searchQuery = event.target.value;
+        renderNostalgiaCards();
+      });
+
+      document.getElementById("nostalgia-card-list").addEventListener("click", (event) => {
+        const voteButton = event.target.closest("[data-vote-card]");
+        if (voteButton) {
+          handleVote(voteButton.dataset.voteCard, voteButton.dataset.voteType);
+          return;
+        }
+
+        const commentToggle = event.target.closest("[data-comment-toggle]");
+        if (commentToggle) {
+          uiState.openCommentCardId = uiState.openCommentCardId === commentToggle.dataset.commentToggle ? null : commentToggle.dataset.commentToggle;
+          renderNostalgiaCards();
+          return;
+        }
+
+        const commentSubmit = event.target.closest("[data-card-comment-submit]");
+        if (commentSubmit) {
+          addCardComment(commentSubmit.dataset.cardCommentSubmit);
+        }
+      });
+
+      document.getElementById("object-list").addEventListener("click", (event) => {
+        const button = event.target.closest("[data-item-id]");
+        if (button) {
+          handleItemReaction(button.dataset.itemId, button.dataset.itemReaction);
+        }
+      });
+
+      document.getElementById("guestbook-form").addEventListener("submit", (event) => {
+        event.preventDefault();
+        addGuestbook();
+      });
+
+      document.querySelectorAll("[data-quiz-answer]").forEach((button) => {
+        button.addEventListener("click", () => {
+          showToast(button.dataset.quizAnswer === "right" ? "정답! 도토리 감성 인정입니다." : "아쉽지만 추억 회로는 켜졌습니다.");
+        });
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", init);
+  </script>
+</body>
+</html>
